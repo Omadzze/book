@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrainMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/thumbnailImage"
+        android:layout_width="148dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/book_cover_137" />
+
+    <TextView
+        android:id="@+id/titleBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/sfprodisplay_bold"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/thumbnailImage"
+        app:layout_constraintStart_toStartOf="@+id/thumbnailImage"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnailImage"
+        tools:text="The Truman Story" />
+
+    <TextView
+        android:id="@+id/authorBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/sfprodisplay_regular"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/titleBook"
+        app:layout_constraintStart_toStartOf="@+id/titleBook"
+        app:layout_constraintTop_toBottomOf="@+id/titleBook"
+        tools:text="Alsiher Navoiy" />
+
+    <ImageView
+        android:id="@+id/raiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/authorBook"
+        app:layout_constraintStart_toStartOf="@+id/authorBook"
+        app:layout_constraintTop_toBottomOf="@+id/authorBook"
+        app:srcCompat="@drawable/ic_five_star" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
