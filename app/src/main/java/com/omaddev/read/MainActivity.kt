@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.omaddev.read.model.Books
 import com.squareup.picasso.Picasso
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,9 +31,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        var smth: String = "abc.pdf"
+//
+//        var file: File = File("/storage/emulated/0/$smth")
+
         mRecyclerView = findViewById(R.id.book_recycler)
 
         mDatabase = FirebaseDatabase.getInstance().getReference("CategoryBook")
+        mDatabase.keepSynced(true)
         setupRecyclerView()
 
     }
@@ -58,4 +64,5 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         booksAdapter!!.stopListening()
     }
+
 }

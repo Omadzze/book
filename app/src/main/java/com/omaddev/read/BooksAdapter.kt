@@ -38,6 +38,9 @@ class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
                 dataIntent.putExtra("title", model.title)
                 dataIntent.putExtra("thumbnail", model.thumbnail)
                 dataIntent.putExtra("author", model.author)
+                dataIntent.putExtra("download", model.download)
+                dataIntent.putExtra("file", model.file)
+                dataIntent.putExtra("fileName", model.fileName)
                 view.context.startActivity(dataIntent)
             }
         })

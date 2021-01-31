@@ -8,6 +8,8 @@ class Books {
     var title: String? = null
     var download: String? = null
     var author: String? = null
+    var fileName: String? = null
+    var file: String? = null
 //    var rating: Double? = null
 //    var poem: Boolean? = null
 //    var gazelees: Boolean? = null
