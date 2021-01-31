@@ -7,7 +7,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.provider.ContactsContract
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import java.io.File
 
 
 class DetailActivity : AppCompatActivity() {
@@ -26,6 +28,8 @@ class DetailActivity : AppCompatActivity() {
     lateinit var file: String
     lateinit var fileName: String
     lateinit var download: String
+
+    lateinit var applicationFile: File
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
         var descriptionText: TextView = findViewById(R.id.descrDetail)
         var downloadButton: Button = findViewById(R.id.downloadDetail)
         var backButton: ImageView = findViewById(R.id.backButtonDetail)
+        var readButton: Button = findViewById(R.id.readButton)
 
         val intentReceive: Intent = intent
         val bundle = intentReceive.extras
@@ -60,7 +65,22 @@ class DetailActivity : AppCompatActivity() {
             titleText.text = title
             descriptionText.text = description
 
+            applicationFile = File("/storage/emulated/0/Android/data/com.omaddev.read/files/Download/" + file)
+
         }
+        readButton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                if (applicationFile.canRead()) {
+                    val dataIntent = Intent(view.context, PdfActivity::class.java)
+                    dataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    dataIntent.putExtra("file", file)
+                    view.context.startActivity(dataIntent)
+                } else {
+                    Toast.makeText(applicationContext, "Please download book then open it", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -68,10 +88,14 @@ class DetailActivity : AppCompatActivity() {
         }
 
         downloadButton.setOnClickListener {
-            ref.child(file).downloadUrl.addOnSuccessListener {
-                downloadFile(this, fileName, ".pdf", Environment.DIRECTORY_DOWNLOADS, download)
-            }.addOnFailureListener {
-                Toast.makeText(this, "Error occured. Please try again", Toast.LENGTH_SHORT).show()
+            if (applicationFile.canRead()) {
+                Toast.makeText(applicationContext, "You are already downloaded book. Read it", Toast.LENGTH_SHORT).show()
+            } else {
+                ref.child(file).downloadUrl.addOnSuccessListener {
+                    downloadFile(this, fileName, ".pdf", Environment.DIRECTORY_DOWNLOADS, download)
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Error occured. Please try again", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
