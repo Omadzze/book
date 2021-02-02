@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -14,44 +15,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.omaddev.read.model.Books
 import com.squareup.picasso.Picasso
 
-class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
-    FirebaseRecyclerAdapter<Books, BooksAdapter.BooksViewHolder>(options) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
-
-        return BooksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.grid_view_item, parent, false))
-
-    }
-
-    override fun onBindViewHolder(holder: BooksViewHolder, position: Int, model: Books) {
-        holder.authorBook.text = model.author
-        holder.titleBook.text = model.title
-        Log.i("TAG", holder.titleBook.toString())
-        Picasso.get().load(model.thumbnail).into(holder.thumbnail)
-
-        if (model.rating!! >= 5.0) {
-            holder.rating.setImageResource(R.drawable.ic_five_star)
-        } else if (model.rating!! >= 4.0) {
-            holder.rating.setImageResource(R.drawable.ic_four_star)
-        }
-
-        holder.constrainLayout.setTag(position)
-        holder.constrainLayout.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                val dataIntent = Intent(view.context, DetailActivity::class.java)
-                dataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                dataIntent.putExtra("description", model.description)
-                dataIntent.putExtra("title", model.title)
-                dataIntent.putExtra("thumbnail", model.thumbnail)
-                dataIntent.putExtra("author", model.author)
-                dataIntent.putExtra("download", model.download)
-                dataIntent.putExtra("file", model.file)
-                dataIntent.putExtra("fileName", model.fileName)
-                dataIntent.putExtra("rating", model.rating)
-                view.context.startActivity(dataIntent)
-            }
-        })
-    }
+class BooksAdapter {
 
     class BooksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -60,5 +24,35 @@ class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
         var thumbnail: ImageView = itemView.findViewById(R.id.thumbnailImage)
         var constrainLayout: ConstraintLayout = itemView.findViewById(R.id.constrainMain)
         var rating: ImageView = itemView.findViewById(R.id.raiting)
+
+        fun bind(books: Books, position: Int) {
+            titleBook.text = books.title
+            authorBook.text = books.author
+            Picasso.get().load(books.thumbnail).into(thumbnail)
+
+            constrainLayout.setTag(position)
+            constrainLayout.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(view: View) {
+                    val dataIntent = Intent(view.context, DetailActivity::class.java)
+                    dataIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    dataIntent.putExtra("description", books.description)
+                    dataIntent.putExtra("title", books.title)
+                    dataIntent.putExtra("thumbnail", books.thumbnail)
+                    dataIntent.putExtra("author", books.author)
+                    dataIntent.putExtra("download", books.download)
+                    dataIntent.putExtra("file", books.file)
+                    dataIntent.putExtra("fileName", books.fileName)
+                    dataIntent.putExtra("rating", books.rating)
+                    view.context.startActivity(dataIntent)
+                }
+            })
+
+            if (books.rating!! >= 5.0) {
+                rating.setImageResource(R.drawable.ic_five_star)
+            } else if (books.rating!! >= 4.0) {
+                rating.setImageResource(R.drawable.ic_four_star)
+            }
+
+        }
     }
 }
