@@ -11,10 +11,5 @@ class Books {
     var fileName: String? = null
     var file: String? = null
     var rating: Double? = null
-//    var poem: String? = null
-//    var gazelees: String? = null
-//    var hamsa: String? = null
-
-    constructor()
 
 }

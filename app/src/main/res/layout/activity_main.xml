@@ -1,95 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgColor">
 
-    <ImageView
-        android:id="@+id/hamburgerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="57dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu_button" />
-
     <EditText
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ic_search"
-        android:paddingLeft="20dp"
-        android:hint="Search"
-        android:textColor="@color/text"
         android:fontFamily="@font/sfprodisplay_regular"
+        android:hint="Search"
+        android:paddingLeft="20dp"
+        android:textColor="@color/text"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hamburgerButton"
+        app:layout_constraintEnd_toStartOf="@+id/hamburgerButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/hamburgerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/bgColor"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchView"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_search_btn" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:singleSelection="true"
-        app:singleLine="true">
+        app:singleLine="true"
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipAll"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All"
             android:textColor="@color/bgColor"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            app:checkedIconVisible="true"
             app:checkedIconTint="@color/white"
+            app:checkedIconVisible="true"
             app:chipBackgroundColor="@color/text_color_chip_state_lis"
-            tools:checked="true"/>
+            tools:checked="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipPoem"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Poem"
             android:textColor="@color/bgColor"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            app:checkedIconVisible="true"
             app:checkedIconTint="@color/white"
+            app:checkedIconVisible="true"
             app:chipBackgroundColor="@color/text_color_chip_state_lis" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipGazelees"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gazelees"
             android:textColor="@color/bgColor"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            app:checkedIconVisible="true"
             app:checkedIconTint="@color/white"
+            app:checkedIconVisible="true"
             app:chipBackgroundColor="@color/text_color_chip_state_lis" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipHamsa"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hamsa"
             android:textColor="@color/bgColor"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            app:checkedIconVisible="true"
             app:checkedIconTint="@color/white"
+            app:checkedIconVisible="true"
             app:chipBackgroundColor="@color/text_color_chip_state_lis" />
     </com.google.android.material.chip.ChipGroup>
 

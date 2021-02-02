@@ -3,22 +3,26 @@ package com.omaddev.read
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Runnable
 import java.io.File
+import java.util.*
 
 
 class DetailActivity : AppCompatActivity() {
@@ -28,8 +32,12 @@ class DetailActivity : AppCompatActivity() {
     lateinit var file: String
     lateinit var fileName: String
     lateinit var download: String
-
+    lateinit var layout: ConstraintLayout
+    lateinit var textView: TextView
+    lateinit var progressBar: ProgressBar
+    lateinit var downloadView: CardView
     lateinit var applicationFile: File
+    lateinit var fade_in: Animation
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +51,16 @@ class DetailActivity : AppCompatActivity() {
         var authorText: TextView = findViewById(R.id.authorDetail)
         var titleText: TextView = findViewById(R.id.titleDetail)
         var descriptionText: TextView = findViewById(R.id.descrDetail)
-        var downloadButton: Button = findViewById(R.id.downloadDetail)
         var backButton: ImageView = findViewById(R.id.backButtonDetail)
         var readButton: Button = findViewById(R.id.readButton)
         var starImage: ImageView = findViewById(R.id.starsDetail)
         var gradeDetail: TextView = findViewById(R.id.gradeDetail)
+        layout = findViewById(R.id.constraintDetail)
+        textView = findViewById(R.id.downloadText)
+        progressBar = findViewById(R.id.downloadProgress)
+        downloadView = findViewById(R.id.downloadView)
 
+        fade_in = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
 
         val intentReceive: Intent = intent
         val bundle = intentReceive.extras
@@ -93,13 +105,16 @@ class DetailActivity : AppCompatActivity() {
             }
         })
 
-
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        downloadButton.setOnClickListener {
+        if (applicationFile.canRead()) {
+            downloadView.visibility = View.GONE
+        }
+
+        layout.setOnClickListener {
             if (applicationFile.canRead()) {
                 Toast.makeText(applicationContext, "You are already downloaded book. Read it", Toast.LENGTH_SHORT).show()
             } else {
@@ -112,14 +127,46 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun downloadFile(context: Context, fileName: String, fileExtension: String, destinationDirectory: String?, url: String?) {
         val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         val uri = Uri.parse(url)
         val request = DownloadManager.Request(uri)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName + fileExtension)
-        downloadManager.enqueue(request)
+        val downloadId: Long = downloadManager.enqueue(request)
+
+        Thread {
+            var downloading = true
+            while (downloading) {
+                val q = DownloadManager.Query()
+                q.setFilterById(downloadId)
+                val cursor: Cursor = downloadManager.query(q)
+                cursor.moveToFirst()
+                val bytes_downloaded: Int = cursor.getInt(cursor
+                        .getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
+                val bytes_total: Int = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
+                if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) === DownloadManager.STATUS_SUCCESSFUL) {
+                    downloading = false
+                }
+                runOnUiThread {
+                    if (downloading) {
+                        progressBar.visibility = View.VISIBLE
+                        textView.text = "PLEASE WAIT"
+                        textView.animation = fade_in
+                        progressBar.animation = fade_in
+                    } else {
+                        progressBar.visibility = View.GONE
+                        textView.text = "DONE"
+                        layout.setBackgroundColor(getColor(R.color.star))
+                    }
+                }
+                cursor.close()
+            }
+        }.start()
     }
 
-
 }
+
+
+

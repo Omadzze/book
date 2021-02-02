@@ -14,5 +14,4 @@ class Read: Application() {
 
         Firebase.database.setPersistenceEnabled(true)
     }
-
 }

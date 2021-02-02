@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var chipPoem: Chip
     lateinit var chipGazelees: Chip
     lateinit var chipHamsa: Chip
+    lateinit var hamburgerMenu: ImageView
 
     private lateinit var booksAdapter: FirebaseRecyclerAdapter<Books, BooksAdapter.BooksViewHolder>
     private var mBaseQuery = FirebaseDatabase.getInstance().getReference("CategoryBook")
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         chipPoem = findViewById(R.id.chipPoem)
         chipGazelees = findViewById(R.id.chipGazelees)
         chipHamsa = findViewById(R.id.chipHamsa)
+        hamburgerMenu = findViewById(R.id.hamburgerButton)
 
         booksAdapter = getAdapter()
 
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         chipPoem.setOnClickListener(this)
         chipGazelees.setOnClickListener(this)
         chipHamsa.setOnClickListener(this)
-
+        hamburgerMenu.setOnClickListener(this)
     }
 
     private fun getAdapter(): FirebaseRecyclerAdapter<Books, BooksAdapter.BooksViewHolder> {
@@ -95,6 +99,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     getPoemQuery()
                 } else if (v == chipGazelees) {
                     getGazellesQuery()
+                } else if (v == hamburgerMenu) {
+                    var searchText: String = mSearchBar.text.toString()
+                    getSearchQuery(searchText)
                 } else {
                     getHamsaQuery()
                 }
@@ -107,5 +114,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Change options of adapter.
         booksAdapter.updateOptions(newOptions)
     }
-
+    private fun getSearchQuery(searchText: String) = mBaseQuery.orderByChild("title").startAt(searchText).endAt(searchText + "\uf8ff")
 }

@@ -29,11 +29,5 @@ class PdfActivity : AppCompatActivity() {
 
         fileSystem = File("/storage/emulated/0/Android/data/com.omaddev.read/files/Download/$fileName")
         pdfView.fromFile(fileSystem).load()
-//        if (fileSystem == null) {
-//            pdfView.fromFile(fileSystem).load()
-//        } else {
-//            Toast.makeText(this, "Please download book then open it", Toast.LENGTH_SHORT).show()
-//        }
-
         }
 }
