@@ -29,6 +29,12 @@ class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
         Log.i("TAG", holder.titleBook.toString())
         Picasso.get().load(model.thumbnail).into(holder.thumbnail)
 
+        if (model.rating!! >= 5.0) {
+            holder.rating.setImageResource(R.drawable.ic_five_star)
+        } else if (model.rating!! >= 4.0) {
+            holder.rating.setImageResource(R.drawable.ic_four_star)
+        }
+
         holder.constrainLayout.setTag(position)
         holder.constrainLayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
@@ -41,6 +47,7 @@ class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
                 dataIntent.putExtra("download", model.download)
                 dataIntent.putExtra("file", model.file)
                 dataIntent.putExtra("fileName", model.fileName)
+                dataIntent.putExtra("rating", model.rating)
                 view.context.startActivity(dataIntent)
             }
         })
@@ -52,5 +59,6 @@ class BooksAdapter(options: FirebaseRecyclerOptions<Books>) :
         var authorBook: TextView = itemView.findViewById(R.id.authorBook)
         var thumbnail: ImageView = itemView.findViewById(R.id.thumbnailImage)
         var constrainLayout: ConstraintLayout = itemView.findViewById(R.id.constrainMain)
+        var rating: ImageView = itemView.findViewById(R.id.raiting)
     }
 }

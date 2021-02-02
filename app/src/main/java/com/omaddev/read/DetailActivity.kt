@@ -46,6 +46,9 @@ class DetailActivity : AppCompatActivity() {
         var downloadButton: Button = findViewById(R.id.downloadDetail)
         var backButton: ImageView = findViewById(R.id.backButtonDetail)
         var readButton: Button = findViewById(R.id.readButton)
+        var starImage: ImageView = findViewById(R.id.starsDetail)
+        var gradeDetail: TextView = findViewById(R.id.gradeDetail)
+
 
         val intentReceive: Intent = intent
         val bundle = intentReceive.extras
@@ -58,12 +61,21 @@ class DetailActivity : AppCompatActivity() {
             val author = bundle["author"] as String?
             file = bundle["file"] as String
             fileName = bundle["fileName"] as String
+            val rating = bundle["rating"] as Double
 
             Picasso.get().load(thumbnail).into(thumbnailImage)
 
             authorText.text = author
             titleText.text = title
             descriptionText.text = description
+
+            if (rating >= 5.0) {
+                starImage.setImageResource(R.drawable.ic_five_star_detail)
+                gradeDetail.text = "5.0"
+            } else if (rating >= 4.0) {
+                starImage.setImageResource(R.drawable.ic_four_star_detail)
+                gradeDetail.text = "4.0"
+            }
 
             applicationFile = File("/storage/emulated/0/Android/data/com.omaddev.read/files/Download/" + file)
 

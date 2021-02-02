@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#EA9901</color>
     <color name="bgColor">#EFF1F3</color>
+    <color name="titleText">#000000</color>
+    <color name="authorText">#878787</color>
+    <color name="text">#1A1A1A</color>
 </resources>

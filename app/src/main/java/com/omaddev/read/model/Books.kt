@@ -10,8 +10,8 @@ class Books {
     var author: String? = null
     var fileName: String? = null
     var file: String? = null
-//    var rating: Double? = null
-//    var poem: Boolean? = null
+    var rating: Double? = null
+    var poem: String? = null
 //    var gazelees: Boolean? = null
 //    var hamsa: Boolean? = null
 
