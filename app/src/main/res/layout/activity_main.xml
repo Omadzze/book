@@ -15,7 +15,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/ic_search"
         android:fontFamily="@font/sfprodisplay_regular"
-        android:hint="Search"
+        android:hint="@string/search"
         android:paddingLeft="20dp"
         android:textColor="@color/text"
         android:textSize="16sp"
@@ -37,64 +37,72 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_search_btn" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
+    <HorizontalScrollView
+        android:id="@+id/horizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/book_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:singleLine="true"
-        app:singleSelection="true">
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipAll"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="All"
-            android:textColor="@color/bgColor"
-            app:checkedIconTint="@color/white"
-            app:checkedIconVisible="true"
-            app:chipBackgroundColor="@color/text_color_chip_state_lis"
-            tools:checked="true" />
+            app:singleLine="true"
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipPoem"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Poem"
-            android:textColor="@color/bgColor"
-            app:checkedIconTint="@color/white"
-            app:checkedIconVisible="true"
-            app:chipBackgroundColor="@color/text_color_chip_state_lis" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all"
+                android:textColor="@color/bgColor"
+                app:checkedIconTint="@color/white"
+                app:checkedIconVisible="true"
+                app:chipBackgroundColor="@color/text_color_chip_state_lis"
+                tools:checked="true" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipGazelees"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gazelees"
-            android:textColor="@color/bgColor"
-            app:checkedIconTint="@color/white"
-            app:checkedIconVisible="true"
-            app:chipBackgroundColor="@color/text_color_chip_state_lis" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPoem"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/poem"
+                android:textColor="@color/bgColor"
+                app:checkedIconTint="@color/white"
+                app:checkedIconVisible="true"
+                app:chipBackgroundColor="@color/text_color_chip_state_lis" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipHamsa"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hamsa"
-            android:textColor="@color/bgColor"
-            app:checkedIconTint="@color/white"
-            app:checkedIconVisible="true"
-            app:chipBackgroundColor="@color/text_color_chip_state_lis" />
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGazelees"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gazelles"
+                android:textColor="@color/bgColor"
+                app:checkedIconTint="@color/white"
+                app:checkedIconVisible="true"
+                app:chipBackgroundColor="@color/text_color_chip_state_lis" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHamsa"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hamsa"
+                android:textColor="@color/bgColor"
+                app:checkedIconTint="@color/white"
+                app:checkedIconVisible="true"
+                app:chipBackgroundColor="@color/text_color_chip_state_lis" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/book_recycler"
@@ -105,7 +113,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal"
         app:spanCount="2"
         tools:itemCount="16"
         tools:listitem="@layout/grid_view_item" />

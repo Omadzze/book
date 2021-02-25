@@ -100,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
                     dataIntent.putExtra("file", file)
                     view.context.startActivity(dataIntent)
                 } else {
-                    Toast.makeText(applicationContext, "Please download book then open it", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, R.string.download_book_then_open, Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -116,12 +116,12 @@ class DetailActivity : AppCompatActivity() {
 
         layout.setOnClickListener {
             if (applicationFile.canRead()) {
-                Toast.makeText(applicationContext, "You are already downloaded book. Read it", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.already_download_book, Toast.LENGTH_SHORT).show()
             } else {
                 ref.child(file).downloadUrl.addOnSuccessListener {
                     downloadFile(this, fileName, ".pdf", Environment.DIRECTORY_DOWNLOADS, download)
                 }.addOnFailureListener {
-                    Toast.makeText(this, "Error occured. Please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.error_occurred, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -152,12 +152,12 @@ class DetailActivity : AppCompatActivity() {
                 runOnUiThread {
                     if (downloading) {
                         progressBar.visibility = View.VISIBLE
-                        textView.text = "PLEASE WAIT"
+                        textView.text = resources.getString(R.string.please_wait)
                         textView.animation = fade_in
                         progressBar.animation = fade_in
                     } else {
                         progressBar.visibility = View.GONE
-                        textView.text = "DONE"
+                        textView.text = resources.getString(R.string.done)
                         layout.setBackgroundColor(getColor(R.color.star))
                     }
                 }
