@@ -1,0 +1,109 @@
+{
+  "CIA - Confidentiality, Integrity and Availability": {
+    "confidentiality":"Confidentiality ensures that only those with the rights and privileges can access the information. Information has confidentiality when it is protected from disclosure or exposure to unauthorized individuals or systems. When unauthorized individuals or systems can view information, confidentiality is breached.",
+    "integrity": "Integrity is the ability to prevent people from changing your data in an unauthorized or undesirable manner. The integrity of information is threatened when the information is exposed to corruption, damage, destruction or other disruption of its authentic state. Many computer viruses and worms are designed with the explicit purpose of corrupting data.",
+    "availability": "Availability refers to the ability to access our data when we need it. You could lose availability due to a power loss, operating system or application problems, network attacks, or the compromising of a system. Or because of DoS attack (Denial-of-service)"
+  },
+  "Threat, Vulnerability, Attack, Attack Vector": {
+    "threat": "A threat is an object, person, or other entity that presents an ongoing danger to an asset. Management must be informed about the various threats to an organization’s people, applications, data, and information systems. The threat from external sources increases when an organization connects to the Internet. Types of threats (Inside, Outside, Natural, Man-made)",
+    "vulnerability":"A weakness in the security system, e.g., in policy, procedure, design or implementation, that might be exploited to cause loss or harm. Attack surface: some of the vulnerabilities in a given system that are accessible to a hacker. Vulnerability might involve (physical loaction of office, lack of backup files, specific operating system or application that are running",
+    "threat vs vulnerability": "A threat is something that can go wrong and cause damage to valuable assets. A vulnerability is an exposure in the infrastructure that can lead to a threat becoming realized.",
+    "attack vector": "Attack vector is a method or pathway used by a hacker to access or penetrate the target system. It can be phishing emails, malware",
+    "back doors": "A backdoor is a method of bypassing normal authentication or security controls in order to gain unauthorized access to a computer system, network, or software application. It is often used by hackers or other malicious actors to gain access to systems or information that they should not have access to. After that they can get access to sensitive data, modify or delete files, install malware",
+    "brute force": "trying every possible combination of options of a password",
+    "dictionary": "selects specific accounts to attack and uses commonly used passwords (i.e., the dictionary) to guide guesses",
+    "dos": "Dos the attacker sends a large number of connection or information requests to a target. The machine becomes overloaded and can't respond. It then crashes",
+    "ddos": "DDos is an attack in which a coordinated stream of requests is launched against a target from many locations at the same time.",
+    "spoofing": "the intruder sends messages with a source IP address that has been forged to indicate that the messages are coming from a trusted host.",
+    "man-in-the-middle": " an attacker monitors (or sniffs) packets from the network, modifies them, and inserts them back into the network.",
+    "sniffers": "Program that monitors data traveling over network. Can be used for stealing information",
+    "shoulder surfing": "Shoulder surfing is a form of social engineering in which an individual observes another person's sensitive or confidential information, such as passwords by looking over their shoulder or from a nearby location."
+  },
+  "Cryptography": {
+    "cryptoSystem": "Crypto system is a system where a sender transforms unconcealed data called plain text into concealed data called cipher text using encryption algorithm. The receiver after getting cipher text transforms it to the plain text with usage of decryption algorithms.",
+    "public key": "Public key is available to anyone who wants to communicate with the owner of the private key. It is used to encrypt data that can only be decrypted by the owner of the corresponding private key.",
+    "private key": "Private key is a secret key that is kept confidential and known only to the owner. It is used to encrypt data, digitally sign messages, and to decrypt data that has been encrypted with the corresponding public key.",
+    "block ciphers": "Block cipher - encrypting information in chunks. A block cipher breaks down plaintext messages into fixed-size blocks before converting them into ciphertext using a key.",
+    "stream ciphers": "Stream cipher - on the other hand, breaks a plaintext message down into single bits, which then are converted individually into ciphertext using key bits.",
+    "DES": "Data Encryption Standard - has smaller key size which is less secure and slow",
+    "AES": "Advanced Encryption Standard - was released as more secured version of DES as it has bigger key size. Also in DES the plaintext is 64 bits however in AES can be 256 bits.",
+    "hashing": "converting plain text to a hash value of a fixed size. If there will be small change of input data than we will get different hash. It checks values with the stored hash and hash message that he got.",
+    "symmetric": "Symmetric encryption uses the same key for both encryption and decryption. The key is kept secret and known only to the parties involved in the communication. This makes symmetric encryption faster and more efficient than asymmetric encryption.",
+    "asymmetric": "Asymmetric encryption, also known as public-key cryptography, uses two different keys for encryption and decryption. The public key is used to encrypt the data, and the private key is used to decrypt it. The public key can be shared with anyone, while the private key is kept secret by the owner."
+  },
+  "Letters": {
+    "letter": "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z."
+  },
+  "Caesar cipher": {
+    "decr": "To encrypt a message using the Caesar cipher, the sender chooses a number, known as the key, which represents the number of positions each letter in the plaintext is shifted. For example, if the key is 3, each letter in the plaintext is shifted three positions to the right in the alphabet. Thus, the letter A becomes D, B becomes E, and so on."
+  },
+  "Simple Substitution Cipher": {
+    "decr": "A simple substitution cipher is an encryption technique that replaces each letter of the plaintext with a corresponding letter of the ciphertext. The substitution is based on a fixed key, which is a mapping of each letter of the alphabet to a unique letter of the ciphertext."
+  },
+  "Vigenere cipher": {
+    "descr": "For example, the second row starts with the letter 'B' (shifted one letter to the right from 'A'), and the rest of the row is the same as the first row, but shifted one letter to the right. The third row starts with the letter 'C' (shifted two letters to the right from 'A'), and so on."
+  },
+  "Transposition cipher": {
+    "rail fence cipher": "We need to look at key. If a key = 2 then we have two rows, first word will be in a first row and second in the second row and we should continously do this. When we will done we need to write all letters from first row and then from second",
+    "matrix transposition cipher": "the key should be written in the top and numbered according to the character in alphabetical order. Example A = 1, C = 3, D = 4. Then at the bottom we will write our plaintext and then to encode this we need write first full column of character then full second column of second character."
+  },
+  "Network Security": {
+    "Firewall": "A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules. It controls the TCP/IP packets between host and network, prevents malicious traffic",
+    "packet filtering firewall": "Packet filtering protects a local network from undesired invasion depending upon the predefined rules. Examines packet header information: dest address, source address, packet type. Rules for filtering are set based on a manually created access control list. An ACL is a list of statements programmed into router’s interface to allow or deny incoming/outgoing traffic",
+    "stateful inspection firewall": "A stateful firewall is a firewall that monitors the full state of active network connections. Monitors ongoing connections and remember past ones. Prevents many attacks, such as the TCP ACK scan. Slower than packet filtering firewall",
+    "circuit gateway firewall": "Operate on transport layer (layer 4). • check for functional packets in an attempted connection, and—if operating well—will permit a persistent open connection between the two networks. Similar to proxy firewall and also defends against IP spoofing",
+    "next generation firewall": "Combines the features of a traditional firewall with network intrusion prevention systems. Threat specific. Designed to examine and identify specific threats, such as advanced malware, at a more granular level",
+    "hybrid firewall": "Hybrid firewalls use two or more firewall types in a single private network. For example, a hybrid firewall system might include a packet-filtering firewall that is set up to screen all acceptable requests, then pass the requests to a proxy server, which in turn requests services from a Web server deep inside the organization’s networks",
+    "vpn": "encrypt your internet traffic and disguise your online identity. This makes it more difficult for third parties to track your activities online and steal data. The encryption takes place in real time. It secures your network because all traffic is encrypted. Your actual location cannot be determined. Also it can establish protected network connection in public networks",
+    "DoS attack categories": "I explained DoS attack in the up. Categories of Dos/DDos attacks: Volumetric attacks, Fragmentation attacks, TCP state-exhaustion attacks, Application layer attacks"
+  },
+  "Network Security Second": {
+    "signature-based IDS": "Failed login attempts can be a signature of a password cracking attack. anytime that N or more failed login attempts occur within M seconds, the IDS would issue a warning that a password cracking attack is suspected to be in progress. False alarms",
+    "anomaly-based IDS": "Look for unusual or abnormal behaviour. With the AI model and statistics we can separate activities as we have previous data. After that we can conduct analysis if this is normal activity or not. Moreover, if we see unusual patterns then it's abnormal activity",
+    "ACL based authorization": "An access control list (ACL). Each ACE in an ACL identifies a trustee and specifies the access rights allowed, denied, or audited for that trustee. When user wants to access an element, the Security subsystem checks whether he have permission to access it.",
+    "capability based authorization": "A capability is a token, ticket, or key that gives the possessor permission to access an entity or object in a computer system. A capability can be thought of as a pair (x, r) where x is the name of an object and r is a set of privileges or rights."
+  },
+  "Web application security": {
+    "SQL injection attack": "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. Mostly results in unauthorized access to sensitive data such as passwords, credit cards. This method allows to implement SQL injection method to our url to get specific data.",
+    "XSS attack": "Cross-Site Scripting. A web security vulnerability in which when hackers execute malicious JavaScript within a victim’s browser. Hackers attaching malicious code on the website and when the website is loaded the malware start working. After user enters to this website this Javascript malware code running on his web browser which can still personal information.",
+    "TLS": "Transport Layer Security this is updated and more secure version of SSL. The details of the certificate, including the issuing authority and the corporate name of the website owner, this can be viewed in a browser.",
+    "SSL": "Secure Socket Layer it's secure protocol for sending information. During the SSL handshake, the browser asks the server for its SSL certificate and public key to prove its validity. Once the certificate is verified, the browser and web server exchange private and public keys to create a symmetric session key. This creates encrypt communication channel"
+  },
+  "Operating system security": {
+    "buffer overflow": "A buffer overflow occurs when the buffer receives more data than its storage capacity. Buffer stores data temporarily and each buffer has a capacity of data it can hold. During attack, they are overloaded with data. When attacker knows size of system memory he can easily overflow it.",
+    "executable space protection": "Technology that prevents the operating system and applications from using certain portions of the memory to execute code. It's part of a memory protection. Intel and AMD, have executable space protection components. Intel calls it the Execute Disable (XD) bit, and AMD calls it Enhanced Virus Protection",
+    "os hardening": "Remove, unnecessary software. Remove, unnecessary services. Alter default accounts. Use principles of least privilege. Perform updated. Implement logging and auditing. Protecting against malware. Scanners and vulnerability assessment tools"
+  },
+  
+  
+  
+  
+  "Nmap commands": {
+    "command 0": "nmap -sL 192.168.0.0/24 (list all hosts in subnet)",
+    "command 1": "nmap 192.168.1.5 (getting open ports)",
+    "command 2": "nmap -A -T4 192.168.1.5 (scan and os detection)",
+    "command 3": "nmap -sT 192.168.1.5 (scan using TCP protocol)",
+    "command 4": "nmap -sU 192.168.1.5 (scan using UDP protocol)",
+    "command 5": "nmap -sP 192.168.0.0/24 (discover all live hosts)",
+    "command 6": "nmap -PU -p 80 192.168.1.5 (upd scan of port 80)",
+    "command 7": "nmap -sN 192.168.1.5 (null scan ports)",
+    "command 8": "nmap -sV 192.168.1.5 (detect service version)",
+    "command 9": "nmap --open 192.168.1.5 (show only open ports)"
+  },
+  "hping3 commands": {
+    "command 0": "sudo hping3 192.168.56.102 (check whether host is live)",
+    "command 1": "sudo hping3 --scan known -S 192.168.5.1 (scan all known ports)",
+    "command 2": "hping3 --traceroute -V -1 -p 80 -s 4444 www.certifiedhacker.com (traceoute ports works only for websites)",
+    "command 3": "hping3 --scan 70-89 -s -s 5050 192.168.1.2 (syn scan ports 70-89 from port 5050)",
+    "command 4": "hping3 --flood 192.168.1.2 (flood a victim machine)",
+    "command 5": "hping3 --scan 1-1024 192.168.1.2 -S (scan ports from 1-1024 from ports we can guess which OS is running)",
+    "command 6": "hping3 --udp 192.168.1.2 (makes udp scan)"
+  },
+  "nectcat commands": {
+    "descr": "make this after nmap to check whether ports is open or not. If code gives error than use -n in every command",
+    "command 0": "nc -v 192.168.56.1 135 (scan for ports 135 whether it's open or not)",
+    "command 1": "nc -v 192.168.56.1 135 </dev/null && echo Windows 7 (connected to port and writes Windows 7 if it's running else prnits nothing)",
+    "command 2": "nc -zn 192.168.56.1 135 139 (range ports between 135 and 139)",
+    "desc": "We can iterate this process again and again"
+  }
+}
